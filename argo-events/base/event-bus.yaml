@@ -5,6 +5,7 @@ metadata:
 spec:
   nats:
     native:
+      serviceAccountName: argo-events-sa
       replicas: 3
       auth: token
 
