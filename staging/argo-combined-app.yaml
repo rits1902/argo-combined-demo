@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-combined-app-staging
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: staging
+  source:
+    path: kustomize/overlays/staging
+    repoURL: https://github.com/contato318/argo-combined-app
+    targetRevision: HEAD
+    kustomize:
+      images:
+      - dirceusilva/argo-combined-app:16dd5464be1612c8e5a00fba6b4e70ea9d211529
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: staging
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+    - CreateNamespace=true
