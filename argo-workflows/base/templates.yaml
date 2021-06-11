@@ -45,7 +45,7 @@ spec:
       - name: image_name
       - name: tag
     script:
-      image: dirceusilva/kustomize-image:latest
+      image: rits07/kustomize-image:latest
       command: [sh]
       source: |
         set -e
